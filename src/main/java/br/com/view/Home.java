@@ -1,6 +1,7 @@
 package br.com.view;
 
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +20,6 @@ import javax.swing.border.EmptyBorder;
 import br.com.controller.PessoaController;
 import br.com.dao.GenericDao;
 import br.com.model.Pessoa;
-import br.com.model.Usuario;
 import br.com.model.table.PessoasTable;
 import java.awt.Toolkit;
 
@@ -137,15 +137,15 @@ public class Home extends JFrame {
 		contentPane.add(btnUpdate);
 
 		// TESTE
-		btnTeste = new JButton("Adicionar Produto");
+		btnTeste = new JButton("Produtos");
 		btnTeste.setForeground(Color.WHITE);
 		btnTeste.setBackground(Color.BLACK);
 		btnTeste.setFocusPainted(false);
 		btnTeste.setFont(new Font("3ds", Font.BOLD, 16));
 		btnTeste.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastrarProduto cadastrarProduto = new CadastrarProduto(user);
-				cadastrarProduto.setVisible(true);
+				FrameProduto frameProduto = new FrameProduto(user);
+				frameProduto.setVisible(true);
 				setVisible(false);
 			}
 		});
