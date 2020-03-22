@@ -116,13 +116,13 @@ public class FrameProduto extends JFrame {
 			}
 		});
 		btnCadastrar.setForeground(Color.WHITE);
-		btnCadastrar.setBackground(Color.BLACK);
+		btnCadastrar.setBackground(Color.BLACK); 
 		btnCadastrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 		btnCadastrar.setBounds(126, 82, 106, 23);
 		contentPane.add(btnCadastrar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
+		btnVoltar.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				Home tela = new Home(user);
 				dispose();
