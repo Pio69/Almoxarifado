@@ -23,6 +23,7 @@ import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
@@ -30,6 +31,7 @@ import java.util.concurrent.ThreadFactory;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
@@ -42,6 +44,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 	Pessoa pessoa;
 
 	public Leitor(Pessoa pessoa) {
+		setResizable(false);
 		initComponents();
 		initWebcam();
 		this.pessoa = pessoa;
@@ -58,7 +61,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 		jLabel1 = new javax.swing.JLabel();
 		jPanel2 = new javax.swing.JPanel();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
 		jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,12 +141,12 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 				emprestar(result);
 
-				try {
+			/*	try {
 					ProdutoController.beep();
 				} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 
 				dispose();
 			}
@@ -162,14 +165,16 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 		GenericDaoAcao genericDaoAcao = new GenericDaoAcao();
 
-		Acao acao = genericDaoAcao.validaProduto(new Acao(), Integer.parseInt(result.getText().toString()));
+		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(), Integer.parseInt(result.getText().toString()));
 
-		if (acao == null) {
+		if (acoes == null || acoes.isEmpty()) {
 			System.out.println("Leitor: " + Integer.parseInt(result.getText().toString()));
 
 			GenericDao genericDao;
 
 			genericDao = new GenericDao();
+			
+			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
 
 			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
 
@@ -187,6 +192,8 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 			GenericDao genericDao;
 
 			genericDao = new GenericDao();
+			
+			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
 
 			acao.setEntregue(true);
 

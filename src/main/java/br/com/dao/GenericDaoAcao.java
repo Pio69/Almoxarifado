@@ -26,18 +26,20 @@ public class GenericDaoAcao {
 
 	}
 
-	public Acao validaProduto(Object entity, Integer qrCode) {
+	public List<?> valida(Object entity, Integer idQRCode) {
 
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 
-		Acao acao = (Acao) entityManager.createQuery("from " + entity.getClass().getName() + " where produto_id = " + qrCode + " and entregue = 0").getSingleResult();
+		List<?> lista = entityManager
+				.createQuery("from " + entity.getClass().getName() + " where produto_id = " + idQRCode).getResultList();
 
 		transaction.commit();
+		
+		return lista;
 
-		return acao;
-
-	}
+	}	
+	
 
 	// METODO DE LISTAGEM
 	public List<?> select(Object entity) {
