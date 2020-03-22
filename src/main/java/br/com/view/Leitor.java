@@ -40,7 +40,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 	private static final long serialVersionUID = 6441489157408381878L;
 	private Executor executor = Executors.newSingleThreadExecutor(this);
-	
+
 	Pessoa pessoa;
 
 	public Leitor(Pessoa pessoa) {
@@ -141,12 +141,12 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 				emprestar(result);
 
-			/*	try {
+				try {
 					ProdutoController.beep();
 				} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}*/
+				}
 
 				dispose();
 			}
@@ -165,7 +165,8 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 		GenericDaoAcao genericDaoAcao = new GenericDaoAcao();
 
-		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(), Integer.parseInt(result.getText().toString()));
+		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(),
+				Integer.parseInt(result.getText().toString()));
 
 		if (acoes == null || acoes.isEmpty()) {
 			System.out.println("Leitor: " + Integer.parseInt(result.getText().toString()));
@@ -173,7 +174,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 			GenericDao genericDao;
 
 			genericDao = new GenericDao();
-			
+
 			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
 
 			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
@@ -192,7 +193,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 			GenericDao genericDao;
 
 			genericDao = new GenericDao();
-			
+
 			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
 
 			acao.setEntregue(true);
