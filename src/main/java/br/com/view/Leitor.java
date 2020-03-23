@@ -11,6 +11,7 @@ import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 
+import br.com.controller.LeitorController;
 import br.com.controller.ProdutoController;
 import br.com.dao.GenericDao;
 import br.com.dao.GenericDaoAcao;
@@ -138,8 +139,8 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 			}
 
 			if (result != null) {
-
-				emprestar(result);
+				LeitorController leitorController = new LeitorController();
+				leitorController.emprestar(result,pessoa);
 
 				try {
 					ProdutoController.beep();
@@ -161,69 +162,6 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 		Thread t = new Thread(r, "My Thread");
 		t.setDaemon(true);
 		return t;
-	}
-
-	public void emprestar(Result result) {
-
-		Integer idProd = Integer.parseInt(result.getText().toString());
-		
-		GenericDaoAcao genericDaoAcao = new GenericDaoAcao();
-
-		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(),idProd);
-
-		if (acoes == null || acoes.isEmpty()) {
-			System.out.println("Leitor: " + idProd);
-
-			GenericDao genericDao;
-
-			genericDao = new GenericDao();
-
-			Acao acao = new Acao();
-
-			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
-
-			System.out.println(this.pessoa);
-			
-			acao.setPessoa(this.pessoa);
-			acao.setProduto((Produto) genericDao.search(idProd, new Produto()));
-			acao.setEntregue(false);
-			acao.setDataRetirada(dataAtual);
-
-			System.out.println(acao);
-
-			genericDao.insert(acao);
-			
-			Produto prod = acao.getProduto();
-			prod.setEmprestado(true);
-			
-			genericDao.update(prod);
-		} else {
-			System.out.println("Leitor: " + idProd);
-
-			GenericDao genericDao;
-
-			genericDao = new GenericDao();
-			genericDaoAcao = new GenericDaoAcao();
-
-			System.out.println((Acao) genericDaoAcao.search(new Acao(),pessoa, idProd));
-
-			Acao acao = (Acao) genericDaoAcao.search(new Acao(),pessoa, idProd);
-			
-			acao.setEntregue(true);
-			
-			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
-			
-			acao.setDataEntrega(dataAtual);
-
-			System.out.println(acao);
-
-			genericDao.update(acao);
-			
-			Produto prod = acao.getProduto();
-			prod.setEmprestado(false);
-			
-			genericDao.update(acao);
-		}
 	}
 
 }
