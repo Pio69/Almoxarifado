@@ -36,23 +36,22 @@ public class Alugar extends JFrame {
 
 	private AcaoTable acaoTable;
 	private JButton btnInsert;
-	private JButton btnRemove;
 	private GenericDao genericDao;
-	
+
 	Integer produto;
 	private JButton btnVoltar;
-	
+
 	private Leitor frame;
-	
+
 	public void setProduto(Integer produto) {
 		this.produto = produto;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public Alugar(Pessoa user) {
-		
-		genericDao = new GenericDao();		
-		
+
+		genericDao = new GenericDao();
+
 		setTitle("Home");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,33 +67,25 @@ public class Alugar extends JFrame {
 
 		// TABLE DE Pessoa
 		tableAcao = new JTable();
-		tableAcao.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				btnRemove.setEnabled(true);
-
-			}
-		});
 		tableAcao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false, (user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
+		acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false,
+				(user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
 		tableAcao.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		scrollPane.setViewportView(tableAcao);
 		tableAcao.setModel(acaoTable);
 
 		// CHAMA A TELA DE CADASTRO
-		btnInsert = new JButton("Emprestar");
+		btnInsert = new JButton("Leitor");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				frame = new Leitor(user);
 				frame.setVisible(true);
-			
-				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false, (user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
+
+				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false,
+						(user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
 				tableAcao.setModel(acaoTable);
-				
-				btnRemove.setEnabled(false);
-	
+
 			}
 		});
 		btnInsert.setForeground(Color.WHITE);
@@ -103,34 +94,26 @@ public class Alugar extends JFrame {
 		btnInsert.setBounds(10, 65, 121, 23);
 		contentPane.add(btnInsert);
 
-		// REMOVE A PESSOA
-		btnRemove = new JButton("Devolver");
-		btnRemove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				frame = new Leitor(user);
-				frame.setVisible(true);
-			
-				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false, (user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
-				tableAcao.setModel(acaoTable);
-				
-				btnRemove.setEnabled(false);
-
-			}
-		});
-		btnRemove.setEnabled(false);
-		btnRemove.setForeground(Color.WHITE);
-		btnRemove.setBackground(Color.BLACK);
-		btnRemove.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
-		btnRemove.setBounds(141, 65, 121, 23);
-		contentPane.add(btnRemove);
-		
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home frame = new Home(user);
-				frame.setVisible(true);
-				dispose();
+				switch (user.getUsuario().getTipo()) {
+					case "Gerente":
+						Home frame = new Home(user);
+						frame.setVisible(true);
+						dispose();
+						break;
+	
+					case "Professor":
+						Almoxarifado frame2 = new Almoxarifado(user);
+						frame2.setVisible(true);
+						dispose();
+						break;
+	
+					default:
+						break;
+				}
+
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
@@ -140,4 +123,3 @@ public class Alugar extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 }
- 

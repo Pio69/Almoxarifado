@@ -74,6 +74,12 @@ public class Pessoa {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", entrada=" + entrada + ", saida=" + saida
+				+ ", usuario=" + usuario + "]";
+	}
 	
 	
 }

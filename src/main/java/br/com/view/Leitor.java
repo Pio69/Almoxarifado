@@ -147,9 +147,11 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				
 				dispose();
+
 			}
+			
 		} while (result == null);
 
 	}
@@ -163,43 +165,63 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 	public void emprestar(Result result) {
 
+		Integer idProd = Integer.parseInt(result.getText().toString());
+		
 		GenericDaoAcao genericDaoAcao = new GenericDaoAcao();
 
-		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(),
-				Integer.parseInt(result.getText().toString()));
+		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(),idProd);
 
 		if (acoes == null || acoes.isEmpty()) {
-			System.out.println("Leitor: " + Integer.parseInt(result.getText().toString()));
+			System.out.println("Leitor: " + idProd);
 
 			GenericDao genericDao;
 
 			genericDao = new GenericDao();
 
-			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
+			Acao acao = new Acao();
 
 			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
 
-			acao.setPessoa(pessoa);
-			acao.setProduto((Produto) genericDao.search(Integer.parseInt(result.getText().toString()), new Produto()));
+			System.out.println(this.pessoa);
+			
+			acao.setPessoa(this.pessoa);
+			acao.setProduto((Produto) genericDao.search(idProd, new Produto()));
 			acao.setEntregue(false);
 			acao.setDataRetirada(dataAtual);
 
 			System.out.println(acao);
 
 			genericDao.insert(acao);
+			
+			Produto prod = acao.getProduto();
+			prod.setEmprestado(true);
+			
+			genericDao.update(prod);
 		} else {
-			System.out.println("Leitor: " + Integer.parseInt(result.getText().toString()));
+			System.out.println("Leitor: " + idProd);
 
 			GenericDao genericDao;
 
 			genericDao = new GenericDao();
+			genericDaoAcao = new GenericDaoAcao();
 
-			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
+			System.out.println((Acao) genericDaoAcao.search(new Acao(),pessoa, idProd));
 
+			Acao acao = (Acao) genericDaoAcao.search(new Acao(),pessoa, idProd);
+			
 			acao.setEntregue(true);
+			
+			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
+			
+			acao.setDataEntrega(dataAtual);
 
 			System.out.println(acao);
 
+			genericDao.update(acao);
+			
+			Produto prod = acao.getProduto();
+			prod.setEmprestado(false);
+			
 			genericDao.update(acao);
 		}
 	}

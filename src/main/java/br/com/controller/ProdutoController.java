@@ -34,7 +34,7 @@ public class ProdutoController {
 	public static void gerarCode(String texto) {
 
 		int size = 125; // TAMANHO DA IMAGEM
-		String nomeArquivo = "F:\\Workspace\\eclipse-workspace\\Almoxarifado\\QR_Ferramentas\\"
+		String nomeArquivo = "D:\\Particular\\Workspace\\Eclipse\\Almoxarifado\\QR_Ferramentas\\"
 				+ "produto_" + texto + ".png"; // CAMINHO ONDE VAI SE BAIXADO E NOME NO
 																			// ARQUIVO
  
