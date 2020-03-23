@@ -120,6 +120,23 @@ public class FrameProduto extends JFrame {
 		btnCadastrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 		btnCadastrar.setBounds(126, 82, 106, 23);
 		contentPane.add(btnCadastrar);
+		
+		// CHAMA A TELA DE HISTORICO
+		JButton btnHistorico = new JButton("Historico");
+		btnHistorico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				HistoricoEmprestimo historicoEmprestimo = new HistoricoEmprestimo(user);
+				historicoEmprestimo.setVisible(true);
+				dispose();
+				
+			}
+		});
+		btnHistorico.setForeground(Color.WHITE);
+		btnHistorico.setBackground(Color.BLACK);
+		btnHistorico.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		btnHistorico.setBounds(242, 82, 106, 23);
+		contentPane.add(btnHistorico);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() { 

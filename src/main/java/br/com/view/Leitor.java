@@ -10,6 +10,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
+import com.sun.glass.ui.Window;
 
 import br.com.controller.LeitorController;
 import br.com.controller.ProdutoController;
@@ -149,6 +150,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 					e.printStackTrace();
 				}
 				
+				webcam.close();
 				dispose();
 
 			}

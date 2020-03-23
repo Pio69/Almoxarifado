@@ -38,7 +38,7 @@ public class Home extends JFrame {
 
 	@SuppressWarnings("unchecked")
 	public Home(Pessoa user) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Almoxarifado.class.getResource("/imagens/weg-logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/imagens/weg-logo.png")));
 		setTitle("WEG SA");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

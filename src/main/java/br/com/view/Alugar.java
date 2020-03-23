@@ -84,6 +84,7 @@ public class Alugar extends JFrame {
 
 				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false,
 						(user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
+				acaoTable.fireTableDataChanged();
 				tableAcao.setModel(acaoTable);
 
 			}
@@ -105,7 +106,7 @@ public class Alugar extends JFrame {
 						break;
 	
 					case "Professor":
-						Almoxarifado frame2 = new Almoxarifado(user);
+						Login frame2 = new Login();
 						frame2.setVisible(true);
 						dispose();
 						break;
