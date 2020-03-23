@@ -2,14 +2,14 @@ package br.com.controller;
 
 import java.util.List;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import br.com.dao.GenericDao;
 import br.com.model.Pessoa;
-import br.com.model.Usuario;
-import br.com.view.Almoxarifado;
+import br.com.view.Alugar;
 import br.com.view.Home;
 
 public class LoginController {
@@ -54,8 +54,8 @@ public class LoginController {
 			login.setVisible(false);
 			break;
 		case "Professor":
-			Almoxarifado almoxarifado = new Almoxarifado(pessoa);
-			almoxarifado.setVisible(true);
+			Alugar alugar= new Alugar(pessoa);
+			alugar.setVisible(true);
 			login.setVisible(false);
 			break;
 
