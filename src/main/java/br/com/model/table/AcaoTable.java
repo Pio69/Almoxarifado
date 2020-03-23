@@ -1,6 +1,7 @@
 package br.com.model.table;
 
 import java.util.List;
+		
 
 import javax.swing.table.AbstractTableModel;
 
@@ -31,6 +32,12 @@ public class AcaoTable extends AbstractTableModel {
 		}else {
 			this.acoes = (List<Acao>) genericDaoAcao.select(new Acao(),idPessoa);
 		}
+	}
+
+	public AcaoTable() {
+		
+		acoes = (List<Acao>) genericDao.select(new Acao());
+		
 	}
 
 	@Override
