@@ -1,5 +1,21 @@
 package br.com.model;
 
+/*
+SENAI
+PSIN
+MI-66
+Objetivo:
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Sena
+Data: 06/08/2020
+
+Alterações: 
+Nome: Vinícius Sena
+Alterou: Documentou o codigo
+
+Objetivo: Classe responsavel pelo modelo de dados de pessoas
+
+*/
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +26,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Pessoa {
 
-	// ATRIBUTOS
+	// Atributos de pessoas
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
@@ -73,6 +89,19 @@ public class Pessoa {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	/* 
+     * Retorno: String
+     * Objetivo: Retorna os dados de pessoa formatados
+     * Parametro de Saida:
+     *       Acoes
+     *
+    */
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", entrada=" + entrada + ", saida=" + saida
+				+ ", usuario=" + usuario + "]";
 	}
 	
 	

@@ -1,5 +1,21 @@
 package br.com.dao;
 
+/*
+ * SENAI
+ * PSIN
+ * MI-66
+ * Objetivo: fgdsvfhsgvfs
+ * Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano 
+ * Data: 06/08/2020
+ * 
+ * Alterações:
+ * 
+ * Nome: Rafael Adriano 
+ * Data: 06/08/2020
+ * Alterou: Documentação de código		
+ * 
+ */
+
 import java.math.BigInteger;
 import java.util.List;
 

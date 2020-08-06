@@ -1,6 +1,23 @@
 package br.com.model.table;
 
+/*
+SENAI
+PSIN
+MI-66
+Objetivo:
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Sena
+Data: 06/08/2020
+
+Alterações: 
+Nome: Vinícius Sena
+Alterou: Documentou o codigo
+
+Objetivo: Classe responsavel pelo modelo de dados da listagem de ações
+
+*/
+
 import java.util.List;
+		
 
 import javax.swing.table.AbstractTableModel;
 
@@ -11,9 +28,6 @@ import br.com.model.Produto;
 
 public class AcaoTable extends AbstractTableModel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private GenericDao genericDao = new GenericDao();
 	private GenericDaoAcao genericDaoAcao = new GenericDaoAcao();
@@ -31,6 +45,12 @@ public class AcaoTable extends AbstractTableModel {
 		}else {
 			this.acoes = (List<Acao>) genericDaoAcao.select(new Acao(),idPessoa);
 		}
+	}
+
+	public AcaoTable() {
+		
+		acoes = (List<Acao>) genericDao.select(new Acao());
+		
 	}
 
 	@Override

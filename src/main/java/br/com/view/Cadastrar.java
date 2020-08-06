@@ -1,3 +1,17 @@
+/*
+*SENAI 
+*PSIN
+*MI-66
+*Objetivo: Vizualisação dos campos necessarios para o cadastro de Usuario
+*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Sena
+*Data: 06/08/2020
+*
+*Alterações:
+*Nome: Kelvin Schneider
+*Data: 06/08/2020
+*Alterou: Documentação de código
+*/
+
 package br.com.view;
 
 import javax.swing.JFrame;
@@ -36,8 +50,14 @@ public class Cadastrar extends JFrame {
 	@SuppressWarnings("rawtypes")
 	private JComboBox comboBox;
 
+	/* 
+	 *
+	 * Objetivo: Carregar os componentes presentes na tela
+	 *
+	*/
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Cadastrar(Pessoa pessoa) {
+	public Cadastrar( Pessoa pessoa) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Cadastrar.class.getResource("/imagens/weg-logo.png")));
 		setTitle("Cadastrar");
 		setResizable(false);
@@ -87,7 +107,7 @@ public class Cadastrar extends JFrame {
 		lblEmail.setBounds(191, 111, 64, 14);
 		contentPane.add(lblEmail);
 
-		// CADASTRA OS DADOS
+		// BOTAO DE CADASTRAR OS DADOS
 		JButton btnInsert = new JButton("Cadastrar");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,6 +115,9 @@ public class Cadastrar extends JFrame {
 				Pessoa pessoas = new Pessoa();
 				Usuario usuario = new Usuario();
 
+				/*
+				 * Inseri os dados coletados na model de usuario
+				 * */
 				usuario.setEmail(txtEmail.getText());
 				usuario.setSenha(String.copyValueOf(pswSenha.getPassword()));
 				usuario.setTipo(comboBox.getSelectedItem().toString());
@@ -133,7 +156,7 @@ public class Cadastrar extends JFrame {
 		btnClear.setBounds(346, 368, 101, 23);
 		contentPane.add(btnClear);
 
-		// VOLTA PARA A TElA PRINCIPAL
+		// BOTAO PARA VOLTAR PARA A TELA PRINCIPAL
 		JButton btnReturn = new JButton("Voltar");
 		btnReturn.setForeground(Color.WHITE);
 		btnReturn.setBackground(Color.BLACK);
@@ -166,6 +189,7 @@ public class Cadastrar extends JFrame {
 		lblTipo.setBounds(191, 299, 64, 14);
 		contentPane.add(lblTipo);
 
+		// COMBOBOX DE TIPO DE USUARIO
 		comboBox = new JComboBox();
 		comboBox.setBackground(Color.WHITE);
 		comboBox.setFont(new Font("3ds", Font.PLAIN, 14));

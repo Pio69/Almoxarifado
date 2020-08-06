@@ -1,3 +1,16 @@
+/*SENAI 
+*PSIN
+*MI-66
+*Objetivo: Vizualisação dos campos necessarios para a edição de Usuario
+*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Sena
+*Data: 06/08/2020
+*
+*Alterações:
+*Nome: Kelvin Schneider
+*Data: 06/08/2020
+*Alterou: Documentação de código
+*/
+
 package br.com.view;
 
 import javax.swing.JFrame;
@@ -32,7 +45,11 @@ public class Editar extends JFrame {
 	private JTextField txtSenha;
 	private JComboBox<String> comboBox;
 
-	public Editar(Pessoa pessoa, Pessoa user) {
+	/* 
+	 * Objetivo: Carregar os componentes presentes na tela
+	 *
+	*/
+	public Editar( Pessoa pessoa,  Pessoa user) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Editar.class.getResource("/imagens/weg-logo.png")));
 		setTitle("Editar");
 		setResizable(false);
@@ -123,11 +140,14 @@ public class Editar extends JFrame {
 		label_2.setBounds(198, 147, 46, 14);
 		contentPane.add(label_2);
 
-		// SALVA AS ALTERACOES
+		//BOTAO PARA SALVAR AS ALTERACOES
 		JButton btnUpdate = new JButton("Salvar");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				/*
+				 *  inseri os dados coletados na model de usuario
+				 * */
 				Usuario usuario = pessoa.getUsuario();
 				usuario.setEmail(txtEmail.getText());
 				usuario.setSenha(txtSenha.getText());

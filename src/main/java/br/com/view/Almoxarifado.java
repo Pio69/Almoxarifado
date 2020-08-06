@@ -1,3 +1,17 @@
+/*
+*SENAI 
+*PSIN
+*MI-66
+*Objetivo: Vizualisação do menu principal
+*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Sena
+*Data: 06/08/2020
+*
+*Alterações:
+*Nome: Kelvin Schneider
+*Data: 06/08/2020
+*Alterou: Documentação de código
+*/
+
 package br.com.view;
 
 import java.awt.Color;
@@ -26,7 +40,12 @@ public class Almoxarifado extends JFrame {
 	private JPanel contentPane;
 	private JButton btnEmprestar;
 
-	public Almoxarifado(Pessoa pessoa) {
+	/* 
+	 * 
+	 * Objetivo: Carregar os componentes presentes na tela	
+	 *
+	*/
+	public Almoxarifado( Pessoa pessoa) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Almoxarifado.class.getResource("/imagens/weg-logo.png")));
 
 		setTitle("WEG SA");
@@ -40,13 +59,14 @@ public class Almoxarifado extends JFrame {
 		contentPane.setLayout(null);
 		ProdutoTable produtoTable = new ProdutoTable();
 
+		// Botão de que direciona a tela de 'Alugar'
 		btnEmprestar = new JButton("Emprestar/Devolver");
 		btnEmprestar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Alugar frame = new Alugar(pessoa);
 				frame.setVisible(true);
 				dispose();
-				
+
 			}
 		});
 		btnEmprestar.setForeground(Color.WHITE);

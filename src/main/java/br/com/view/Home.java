@@ -1,6 +1,22 @@
 package br.com.view;
 
+/*
+SENAI
+PSIN
+MI-66
+Objetivo: Visualição da tela home.
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+Data: 06/08/2020
+
+Alterações: 
+
+Nome: Guilherme Witkosky
+Alterou: Comentário do código 
+
+*/
+
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +35,6 @@ import javax.swing.border.EmptyBorder;
 import br.com.controller.PessoaController;
 import br.com.dao.GenericDao;
 import br.com.model.Pessoa;
-import br.com.model.Usuario;
 import br.com.model.table.PessoasTable;
 import java.awt.Toolkit;
 
@@ -35,10 +50,14 @@ public class Home extends JFrame {
 	private JButton btnUpdate;
 	private GenericDao genericDao;
 	private JButton btnTeste;
+	
+	/* 
+	 * Objetivo: Carregar os componentes presentes na tela.
+	*/
 
 	@SuppressWarnings("unchecked")
 	public Home(Pessoa user) {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(Almoxarifado.class.getResource("/imagens/weg-logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Home.class.getResource("/imagens/weg-logo.png")));
 		setTitle("WEG SA");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +83,8 @@ public class Home extends JFrame {
 
 			}
 		});
+		
+		//Tabela pessoas
 		tablePessoas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		pessoasTable = new PessoasTable();
 		tablePessoas.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -81,6 +102,8 @@ public class Home extends JFrame {
 
 			}
 		});
+		
+		//Botao para inserir
 		btnInsert.setForeground(Color.WHITE);
 		btnInsert.setBackground(Color.BLACK);
 		btnInsert.setFocusPainted(false);
@@ -98,6 +121,8 @@ public class Home extends JFrame {
 
 			}
 		});
+		
+		//Botao de remover
 		btnRemove.setEnabled(false);
 		btnRemove.setForeground(Color.WHITE);
 		btnRemove.setBackground(Color.BLACK);
@@ -129,6 +154,8 @@ public class Home extends JFrame {
 
 			}
 		});
+		
+		//Botao de edicao
 		btnUpdate.setEnabled(false);
 		btnUpdate.setBackground(Color.BLACK);
 		btnUpdate.setForeground(Color.WHITE);
@@ -137,21 +164,22 @@ public class Home extends JFrame {
 		contentPane.add(btnUpdate);
 
 		// TESTE
-		btnTeste = new JButton("Adicionar Produto");
+		btnTeste = new JButton("Produtos");
 		btnTeste.setForeground(Color.WHITE);
 		btnTeste.setBackground(Color.BLACK);
 		btnTeste.setFocusPainted(false);
 		btnTeste.setFont(new Font("3ds", Font.BOLD, 16));
 		btnTeste.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastrarProduto cadastrarProduto = new CadastrarProduto(user);
-				cadastrarProduto.setVisible(true);
+				FrameProduto frameProduto = new FrameProduto(user);
+				frameProduto.setVisible(true);
 				setVisible(false);
 			}
 		});
 		btnTeste.setBounds(449, 65, 175, 23);
 		contentPane.add(btnTeste);
 
+		//Botao sair
 		JButton btnSair = new JButton("Sair");
 		btnSair.setFocusPainted(false);
 		btnSair.addActionListener(new ActionListener() {
@@ -169,6 +197,7 @@ public class Home extends JFrame {
 		btnSair.setBounds(10, 11, 74, 23);
 		contentPane.add(btnSair);
 		
+		//Botao emprestar
 		JButton btnEmprestar = new JButton("Emprestar");
 		btnEmprestar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -177,6 +206,7 @@ public class Home extends JFrame {
 				setVisible(false);
 			}
 		});
+		
 		btnEmprestar.setForeground(Color.WHITE);
 		btnEmprestar.setFont(new Font("Dialog", Font.BOLD, 16));
 		btnEmprestar.setFocusPainted(false);

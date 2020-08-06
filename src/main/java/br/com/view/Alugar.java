@@ -1,3 +1,17 @@
+/*
+*SENAI 
+*PSIN
+*MI-66
+*Objetivo: Vizualisação do produtos alugados
+*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Sena
+*Data: 06/08/2020
+*
+*Alterações:
+*Nome: Kelvin Schneider
+*Data: 06/08/2020
+*Alterou: Documentação de código
+*/
+
 package br.com.view;
 
 import javax.swing.JFrame;
@@ -20,7 +34,6 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.ListSelectionModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -36,23 +49,28 @@ public class Alugar extends JFrame {
 
 	private AcaoTable acaoTable;
 	private JButton btnInsert;
-	private JButton btnRemove;
 	private GenericDao genericDao;
-	
+
 	Integer produto;
 	private JButton btnVoltar;
-	
+
 	private Leitor frame;
-	
+
 	public void setProduto(Integer produto) {
 		this.produto = produto;
 	}
+
+	/* 
+	 *
+	 * Objetivo: Carregar os componentes presentes na tela
+	 *
+	*/
 	
 	@SuppressWarnings("unchecked")
-	public Alugar(Pessoa user) {
-		
-		genericDao = new GenericDao();		
-		
+	public Alugar( Pessoa user) {
+
+		genericDao = new GenericDao();
+
 		setTitle("Home");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,35 +84,29 @@ public class Alugar extends JFrame {
 		scrollPane.setBounds(10, 99, 614, 350);
 		contentPane.add(scrollPane);
 
-		// TABLE DE Pessoa
+		// TABLE DE PESSOA
 		tableAcao = new JTable();
-		tableAcao.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-
-				btnRemove.setEnabled(true);
-
-			}
-		});
 		tableAcao.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false, (user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
+		acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false,
+				(user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
 		tableAcao.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
 		scrollPane.setViewportView(tableAcao);
 		tableAcao.setModel(acaoTable);
 
 		// CHAMA A TELA DE CADASTRO
-		btnInsert = new JButton("Emprestar");
+		btnInsert = new JButton("Leitor");
 		btnInsert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				frame = new Leitor(user);
 				frame.setVisible(true);
-			
-				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false, (user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
+
+				// Pega dados automaticamente do usuario para o aluguel do produto
+				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false,
+						(user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
+				acaoTable.fireTableDataChanged();
 				tableAcao.setModel(acaoTable);
-				
-				btnRemove.setEnabled(false);
-	
+
 			}
 		});
 		btnInsert.setForeground(Color.WHITE);
@@ -103,34 +115,33 @@ public class Alugar extends JFrame {
 		btnInsert.setBounds(10, 65, 121, 23);
 		contentPane.add(btnInsert);
 
-		// REMOVE A PESSOA
-		btnRemove = new JButton("Devolver");
-		btnRemove.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				frame = new Leitor(user);
-				frame.setVisible(true);
-			
-				acaoTable = new AcaoTable((user.getUsuario().getTipo().equals("Gerente")) ? true : false, (user.getUsuario().getTipo().equals("Gerente")) ? null : user.getId());
-				tableAcao.setModel(acaoTable);
-				
-				btnRemove.setEnabled(false);
-
-			}
-		});
-		btnRemove.setEnabled(false);
-		btnRemove.setForeground(Color.WHITE);
-		btnRemove.setBackground(Color.BLACK);
-		btnRemove.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
-		btnRemove.setBounds(141, 65, 121, 23);
-		contentPane.add(btnRemove);
-		
+		// Botão para voltar ao menu principal
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home frame = new Home(user);
-				frame.setVisible(true);
-				dispose();
+				
+				/* 
+				 * Verifica qual a permissao do usario
+				 * e encaminha para a pagina na qual tem a permissao
+				 * 
+				 * */
+				switch (user.getUsuario().getTipo()) {
+					case "Gerente":
+						Home frame = new Home(user);
+						frame.setVisible(true);
+						dispose();
+						break;
+	
+					case "Professor":
+						Login frame2 = new Login();
+						frame2.setVisible(true);
+						dispose();
+						break;
+	
+					default:
+						break;
+				}
+
 			}
 		});
 		btnVoltar.setForeground(Color.WHITE);
@@ -140,4 +151,3 @@ public class Alugar extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 }
- 

@@ -1,6 +1,22 @@
 package br.com.view;
 
+/*
+SENAI
+PSIN
+MI-66
+Objetivo: Visualição da tela de login, com os campos de usuário e senha, que levarão pro sistema.
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+Data: 06/08/2020
+
+Alterações: 
+
+Nome: Guilherme Witkosky
+Alterou: Comentário do código 
+
+*/
+
 import java.awt.Color;
+
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -23,12 +39,17 @@ import br.com.dao.LoginDao;
 import br.com.model.Pessoa;
 import br.com.model.Usuario;
 
+
 public class Login extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtEmail;
 	private JPasswordField pswSenha;
+	
+	/* 
+	 * Objetivo: Carregar os componentes presentes na tela.
+	*/
 
 	public Login() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Login.class.getResource("/imagens/weg-logo.png")));
@@ -43,29 +64,34 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
+		//Imagem da chave
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setEnabled(false);
 		lblNewLabel_2.setIcon(new ImageIcon(Login.class.getResource("/imagens/chave.png")));
 		lblNewLabel_2.setBounds(139, 300, 30, 31);
 		contentPane.add(lblNewLabel_2);
 
+		//Campo de senha
 		pswSenha = new JPasswordField();
 		pswSenha.setHorizontalAlignment(SwingConstants.CENTER);
 		pswSenha.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 13));
 		pswSenha.setBounds(129, 300, 366, 31);
 		contentPane.add(pswSenha);
-
+		
+		//Campo de  e-mail
 		JLabel lblNewLabel_1 = new JLabel("Email");
 		lblNewLabel_1.setFont(new Font("3ds", Font.BOLD, 16));
 		lblNewLabel_1.setBounds(129, 203, 85, 14);
 		contentPane.add(lblNewLabel_1);
 
+		//Campo de senha
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("3ds", Font.BOLD, 16));
 		lblSenha.setBounds(129, 275, 85, 14);
 		contentPane.add(lblSenha);
 		rootPane.addKeyListener(new KeyListener() {
 
+			//Métodos especiais
 			@Override
 			public void keyTyped(java.awt.event.KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -96,12 +122,14 @@ public class Login extends JFrame {
 			}
 		});
 
+		//Imagem de carta
 		JLabel lblNewLabel_3 = new JLabel("");
 		lblNewLabel_3.setEnabled(false);
 		lblNewLabel_3.setIcon(new ImageIcon(Login.class.getResource("/imagens/carta.png")));
 		lblNewLabel_3.setBounds(139, 228, 30, 31);
 		contentPane.add(lblNewLabel_3);
 
+		//Campo de e-mail
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 13));
 		txtEmail.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,12 +137,14 @@ public class Login extends JFrame {
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 
-		JLabel lblNewLabel_4 = new JLabel("");
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setIcon(new ImageIcon(Login.class.getResource("/imagens/cadeado (1).png")));
-		lblNewLabel_4.setBounds(55, 49, 525, 90);
-		contentPane.add(lblNewLabel_4);
+		//Label imagem cadeado 
+		JLabel lblImgCad = new JLabel("");
+		lblImgCad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblImgCad.setIcon(new ImageIcon(Login.class.getResource("/imagens/cadeado (1).png")));
+		lblImgCad.setBounds(55, 49, 525, 90);
+		contentPane.add(lblImgCad);
 
+		//Label de login
 		JLabel lblLogin = new JLabel("Login");
 		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLogin.setFont(new Font("3ds", Font.BOLD, 30));
@@ -146,6 +176,8 @@ public class Login extends JFrame {
 
 			}
 		});
+		
+		//Botao entrar
 		btnEntrar.setForeground(new Color(0, 128, 0));
 		btnEntrar.setBackground(new Color(255, 255, 255));
 		btnEntrar.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 13));

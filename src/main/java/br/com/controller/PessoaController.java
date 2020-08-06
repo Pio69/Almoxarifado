@@ -1,16 +1,29 @@
 package br.com.controller;
 
+/*
+ * SENAI
+ * PSIN
+ * MI-66
+ * Objetivo: Realizar os métodos referente a entidade pessoa, limpar campos, atualizar dados e também verifica-los
+ * Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano 
+ * Data: 06/08/2020
+ * 
+ * Alterações:
+ * 
+ * Nome: Rafael Adriano 
+ * Data: 06/08/2020
+ * Alterou: Documentação de código		
+ * 
+ */
+
 import java.text.SimpleDateFormat;
-
 import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 import br.com.dao.GenericDao;
 import br.com.model.Pessoa;
 import br.com.model.Usuario;
@@ -19,7 +32,15 @@ import br.com.model.table.PessoasTable;
 @SuppressWarnings("unchecked")
 public class PessoaController {
 
-	// RETORNA A IDADE
+	/* 
+	 * Retorno: Int
+	 * Objetivo: Retorna a idade da entidade pessoa
+	 * Parametro de Entrada:
+	 * 	  Ano de nascimento
+	 * Parametro de Saida:
+	 * 	  Idade da pessoa	
+	 *
+	*/
 	public static int getIdade(int anoNasc) {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
@@ -29,7 +50,12 @@ public class PessoaController {
 
 	}
 
-	// LIMPA OS CAMPOS
+	/* 
+	 * Retorno: Void
+	 * Objetivo: Limpas os campos de pessoa
+	 * Parametro de Entrada: 
+	 * 	  Nome, CPF, email, senha, hora entrada, hora saida
+	*/
 	public static void clear(JTextField txtNome, JTextField txtCpf, JTextField txtEmail, JPasswordField pswSenha,
 			JTextField txtEntrada, JTextField txtSaida) {
 
@@ -42,7 +68,13 @@ public class PessoaController {
 
 	}
 
-	// LIMPA OS CAMPOS
+	/* 
+	 * Retorno: Void
+	 * Objetivo: Limpas os campos de pessoa após o update
+	 *  * Parametro de Entrada: 
+	 * 	  Nome, CPF, email, senha, hora entrada, hora saida
+	 *
+	*/
 	public static void clearUpdate(JTextField txtNome, JTextField txtCpf, JTextField txtEmail, JTextField pswSenha,
 			JTextField txtEntrada, JTextField txtSaida) {
 
@@ -55,7 +87,13 @@ public class PessoaController {
 
 	}
 
-	// REMOVE A PESSOA
+	/* 
+	 * Retorno: Void
+	 * Objetivo: Remover uma pessoa juntamente do seu usario no programa
+	 * Parametro de Entrada:
+	 * 	  int ID
+	 *
+	*/
 	public static void remove(JTable tablePessoas, Pessoa user, PessoasTable pessoasTable, JButton btnUpdate,
 			JButton btnRemove) {
 
@@ -78,7 +116,12 @@ public class PessoaController {
 
 	}
 
-	// VERIFICA SE A PESSOA JA ESTA CADASTRADA
+	/* 
+	 * Retorno: Boolean
+	 * Objetivo: Verificar se a pessoa ja existe no sistema 
+	 * Parametro de Entrada:
+	 * 	  int ID
+	*/
 	public static boolean exist(Pessoa pessoa) {
 
 		GenericDao genericDao = new GenericDao();
@@ -99,7 +142,14 @@ public class PessoaController {
 
 	}
 
-	// VERIFICA SE ALGUM CAMPO É NULO
+	/* 
+	 * Retorno: Boolean
+	 * Objetivo: Verificar se existe algum campo nulo
+	 * Parametro de Entrada:
+	 * 	  Nome da pessoa
+	 * Parametro de Saida:
+	 * 	  Boolean
+	*/
 	public static boolean isNull(Pessoa pessoa) {
 
 		if (pessoa.getNome().trim().equals("") || pessoa.getCpf().equals("")
@@ -113,7 +163,15 @@ public class PessoaController {
 
 	}
 
-	// VERIFICA SE O CPF TEM 11 DIGITOS CPF
+	/* 
+	 * Retorno: Boolean
+	 * Objetivo: Verificar se o CPF possui 11 dígitos
+	 * Parametro de Entrada:
+	 * 	  CPF
+	 * Parametro de Saida:
+	 * 	  Boolean
+	 *
+	*/
 	public static boolean isCpf(Pessoa pessoa) {
 
 		if (pessoa.getCpf().length() == 11) {
@@ -124,7 +182,15 @@ public class PessoaController {
 
 	}
 
-	// VERIFICA SE É UM EMAIL
+	/* 
+	 * Retorno: Boolean
+	 * Objetivo: Verificar se o campo de entrada é um tipo de email válido
+	 * Parametro de Entrada:
+	 * 	  Email
+	 * Parametro de Saida:
+	 * 	  Boolean
+	 *
+	*/
 	public static boolean isEmail(Pessoa pessoa) {
 
 		if (pessoa.getUsuario().getEmail().contains("@gmail.com")
@@ -138,8 +204,17 @@ public class PessoaController {
 		return false;
 
 	}
-
-	// REALIZA CADASTRO OU EDICAO, DEPENDENDO DO FRAME QUE O CHAMAR
+	
+	/* 
+	 * Retorno: Boolean
+	 * Objetivo: Realizar cadastro ou edição, havendo esta variação de acordo com a decisão do usuário
+	 * Parametro de Entrada:
+	 * 	  Campos de pessoa
+	 * Parametro de Saida:
+	 * 	  Switch case de telas
+	 *
+	 *
+	*/
 	public static boolean genericFunction(Pessoa pessoa, JFrame genericFrame) {
 
 		// VERIFICA SE OS CAMPOS SAO NULOS

@@ -1,5 +1,20 @@
 package br.com.view;
 
+/*
+SENAI
+PSIN
+MI-66
+Objetivo: Visualição do leitor.
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+Data: 06/08/2020
+
+Alterações: 
+
+Nome: Guilherme Witkosky
+Alterou: Comentário do código 
+
+*/
+
 import com.github.sarxos.webcam.Webcam;
 import com.github.sarxos.webcam.WebcamPanel;
 import com.github.sarxos.webcam.WebcamResolution;
@@ -10,7 +25,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
-
+import br.com.controller.LeitorController;
 import br.com.controller.ProdutoController;
 import br.com.dao.GenericDao;
 import br.com.dao.GenericDaoAcao;
@@ -43,6 +58,12 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 
 	Pessoa pessoa;
 
+	/* 
+	 * Objetivo: Chamando o leitor.
+	 *  * Parametro de Entrada:
+	 * 	  		Pessoa
+	*/
+	
 	public Leitor(Pessoa pessoa) {
 		setResizable(false);
 		initComponents();
@@ -50,6 +71,10 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 		this.pessoa = pessoa;
 	}
 
+	/* 
+	 * Objetivo: Carregar os componentes presentes na tela.
+	*/
+	
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
@@ -94,6 +119,10 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 	private javax.swing.JSeparator jSeparator1;
 	private javax.swing.JTextField result_field;
 	// End of variables declaration//GEN-END:variables
+	
+	/* 
+	 * Objetivo: Detecta a webcan do dispositivo e a utiliza.
+	*/
 
 	private void initWebcam() {
 		Dimension size = WebcamResolution.QVGA.getSize();
@@ -109,6 +138,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 		executor.execute(this);
 	}
 
+	//Metodo especial
 	@Override
 	public void run() {
 		Result result = null;
@@ -138,8 +168,8 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 			}
 
 			if (result != null) {
-
-				emprestar(result);
+				LeitorController leitorController = new LeitorController();
+				leitorController.emprestar(result,pessoa);
 
 				try {
 					ProdutoController.beep();
@@ -147,9 +177,12 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-
+				
+				webcam.close();
 				dispose();
+
 			}
+			
 		} while (result == null);
 
 	}
@@ -159,49 +192,6 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 		Thread t = new Thread(r, "My Thread");
 		t.setDaemon(true);
 		return t;
-	}
-
-	public void emprestar(Result result) {
-
-		GenericDaoAcao genericDaoAcao = new GenericDaoAcao();
-
-		List<Acao> acoes = (List<Acao>) genericDaoAcao.valida(new Acao(),
-				Integer.parseInt(result.getText().toString()));
-
-		if (acoes == null || acoes.isEmpty()) {
-			System.out.println("Leitor: " + Integer.parseInt(result.getText().toString()));
-
-			GenericDao genericDao;
-
-			genericDao = new GenericDao();
-
-			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
-
-			Timestamp dataAtual = new Timestamp(System.currentTimeMillis());
-
-			acao.setPessoa(pessoa);
-			acao.setProduto((Produto) genericDao.search(Integer.parseInt(result.getText().toString()), new Produto()));
-			acao.setEntregue(false);
-			acao.setDataRetirada(dataAtual);
-
-			System.out.println(acao);
-
-			genericDao.insert(acao);
-		} else {
-			System.out.println("Leitor: " + Integer.parseInt(result.getText().toString()));
-
-			GenericDao genericDao;
-
-			genericDao = new GenericDao();
-
-			Acao acao = (Acao) genericDao.search(Integer.parseInt(result.getText().toString()), new Acao());
-
-			acao.setEntregue(true);
-
-			System.out.println(acao);
-
-			genericDao.update(acao);
-		}
 	}
 
 }

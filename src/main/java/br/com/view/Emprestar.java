@@ -1,5 +1,20 @@
 package br.com.view;
 
+/*
+SENAI
+PSIN
+MI-66
+Objetivo: Visualição da tela de empréstimo.
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+Data: 06/08/2020
+
+Alterações: 
+
+Nome: Guilherme Witkosky
+Alterou: Comentário do código 
+
+*/
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -39,13 +54,15 @@ public class Emprestar extends JFrame {
 	private JButton btnRemove;
 	private GenericDao genericDao;
 	
+	/* 
+	 * Objetivo: Carregar os componentes presentes na tela.
+	*/
+	
 	@SuppressWarnings("unchecked")
 	public Emprestar(Pessoa pessoa) {
 		
 		genericDao = new GenericDao();		
 		final Pessoa pessoaAluguel = (Pessoa) genericDao.search(3, new Pessoa());
-		
-		
 		
 		setTitle("Home");
 		setResizable(false);
@@ -70,6 +87,8 @@ public class Emprestar extends JFrame {
 
 			}
 		});
+		
+		//Tabela de produtos
 		tableProd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		produtoTable = new ProdutoTable();
 		tableProd.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 12));
@@ -99,6 +118,8 @@ public class Emprestar extends JFrame {
 
 			}
 		});
+		
+		//Botao de inserir
 		btnInsert.setForeground(new Color(0, 100, 0));
 		btnInsert.setBackground(Color.WHITE);
 		btnInsert.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 15));
@@ -114,6 +135,8 @@ public class Emprestar extends JFrame {
 				dispose();
 			}
 		});
+		
+		//Botao de remover
 		btnRemove.setEnabled(false);
 		btnRemove.setForeground(new Color(128, 0, 0));
 		btnRemove.setBackground(new Color(255, 255, 255));

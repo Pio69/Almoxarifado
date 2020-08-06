@@ -1,5 +1,21 @@
 package br.com.controller;
 
+/*
+ * SENAI
+ * PSIN
+ * MI-66
+ * Objetivo: Chamar o método com som para consciencia que a leitura ocorreu e gerar o qrCode
+ * Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano 
+ * Data: 06/08/2020
+ * 
+ * Alterações:
+ * 
+ * Nome: Rafael Adriano 
+ * Data: 06/08/2020
+ * Alterou: Documentação de código		
+ * 
+ */
+
 import java.io.IOException;
 import java.net.URL;
 
@@ -13,6 +29,7 @@ import javax.swing.JOptionPane;
 
 import com.google.zxing.qrcode.encoder.QRCode;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,9 +37,15 @@ import net.glxn.qrgen.image.ImageType;
 
 public class ProdutoController {
 
+	/* 
+	 * Retorno: Void
+	 * Objetivo: Reproduzir o arquivo de audio
+	 *
+	*/
+	
 	public static void beep() throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
-		// Carrega o arquivo de áudio (não funciona com .mp3, só .wav)
+		// Carrega o arquivo de áudio (não funciona com .mp3, apenas com .wav)
 		URL oUrl = new URL("http://www.soundjay.com/button/beep-06.wav");
 		Clip oClip = AudioSystem.getClip();
 		AudioInputStream oStream = AudioSystem.getAudioInputStream(oUrl);
@@ -31,13 +54,32 @@ public class ProdutoController {
 		oClip.loop(0);
 	}
 
+	/* 
+	 * Retorno: Void
+	 * Objetivo: Gerar o qrCode para a peça
+	 *
+	*/
+	
 	public static void gerarCode(String texto) {
 
-		int size = 125; // TAMANHO DA IMAGEM
-		String nomeArquivo = "F:\\Workspace\\eclipse-workspace\\Almoxarifado\\QR_Ferramentas\\"
-				+ "produto_" + texto + ".png"; // CAMINHO ONDE VAI SE BAIXADO E NOME NO
-																			// ARQUIVO
- 
+		int size = 125; // Seta o tamanho da imagem
+		
+		String nomeArquivo = "";
+		
+		try {
+			
+		
+			nomeArquivo = new File("/QR_Ferramentas/").getCanonicalPath()
+					+ "produto_" + texto + ".png"; // Caminho e nome da imagem que será gerada
+	 
+			System.out.println(new File("../src/main/java/QR_Ferramentas/logo.png/").getCanonicalPath());
+		
+		}catch(Exception ex){
+			
+		}
+		
+			System.out.println(" 2 - " + nomeArquivo);
+		
 		try {
 
 			FileOutputStream f = new FileOutputStream(nomeArquivo);

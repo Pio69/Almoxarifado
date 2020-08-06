@@ -1,7 +1,7 @@
 /*SENAI 
 *PSIN
 *MI-66
-*Objetivo: Vizualisação dos campos necessarios para o cadastro de Produto
+*Objetivo: Vizualisação dos campos necessarios para a edição de Produto
 *Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Sena
 *Data: 06/08/2020
 *
@@ -11,10 +11,12 @@
 *Alterou: Documentação de código
 */
 
+
 package br.com.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,25 +28,23 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import br.com.controller.ProdutoController;
 import br.com.dao.GenericDao;
 import br.com.model.Pessoa;
 import br.com.model.Produto;
-import br.com.model.Usuario;
-import java.awt.Toolkit;
 
-public class CadastrarProduto extends JFrame {
-
+public class EditarProduto extends JFrame {
+	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtDesc;
+	private FrameProduto tela;
 
 	/* 
 	 * Objetivo: Carregar os componentes presentes na tela
 	 *
 	*/
-	public CadastrarProduto( Pessoa user) {
+	public EditarProduto( Pessoa user,  Produto produto) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CadastrarProduto.class.getResource("/imagens/weg-logo.png")));
 		setTitle("WEG SA");
 		setResizable(false);
@@ -56,11 +56,11 @@ public class CadastrarProduto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// botao para voltar a tela home
+		// VOLTA PARA A TELA PRINCIPAL
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Home tela = new Home(user);
+				tela = new FrameProduto(user);
 				dispose();
 				tela.setVisible(true);
 			}
@@ -84,6 +84,10 @@ public class CadastrarProduto extends JFrame {
 		txtDesc.setFont(new Font("3ds", Font.PLAIN, 14));
 		txtDesc.setColumns(10);
 		contentPane.add(txtDesc);
+		
+		// SETA OS CAMPOS
+		txtNome.setText(produto.getNomeProduto());
+		txtDesc.setText(produto.getDescProduto());
 
 		JLabel label = new JLabel("Nome");
 		label.setBounds(183, 141, 46, 14);
@@ -95,28 +99,24 @@ public class CadastrarProduto extends JFrame {
 		lblDescrio.setFont(new Font("3ds", Font.BOLD, 15));
 		contentPane.add(lblDescrio);
 
-		// BOTAO DE CADASTRAR O PRODUTO
-		JButton btnCadastrar = new JButton("Cadastrar");
+		// CADASTRA O PRODUTO
+		JButton btnCadastrar = new JButton("Salvar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				GenericDao genericDao = new GenericDao();
-				Produto produto = new Produto();
 
 				/*
-				 *  inseri os dados coletados na model de produto
+				 *  inseri os dados coletados na model de usuario
 				 * */
 				produto.setNomeProduto(txtNome.getText());
 				produto.setDescProduto(txtDesc.getText());
-				produto.setEmprestado(false);
 
-				genericDao.insert(produto);
-
-				/*
-				 * chama metodo para gerar QRCode atraves do numero do ID
-				 * 
-				 * */
-				ProdutoController.gerarCode(String.valueOf(genericDao.lastInsertId(produto)));
+				genericDao.update(produto);
+				
+				tela = new FrameProduto(user);
+				dispose();
+				tela.setVisible(true);
 
 			}
 		});
