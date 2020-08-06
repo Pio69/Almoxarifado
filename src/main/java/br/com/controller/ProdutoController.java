@@ -68,7 +68,7 @@ public class ProdutoController {
 		
 		try {
 		
-			nomeArquivo = new File("C:/Almoxerifado/QR_Ferramentas/").getCanonicalPath()
+			nomeArquivo = "C:/Almoxarifado/QR_Ferramentas/"
 					+ "produto_" + texto + ".png"; // Caminho e nome da imagem que será gerada
 	 
 		}catch(Exception ex){
