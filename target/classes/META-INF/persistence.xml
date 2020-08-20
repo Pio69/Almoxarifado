@@ -7,6 +7,8 @@
 
 		<class>br.com.model.Pessoa</class>
 		<class>br.com.model.Usuario</class>
+		<class>br.com.model.Endereco</class>
+		<class>br.com.model.UnidadeFederativa</class>
 		<class>br.com.model.Produto</class>
 		<class>br.com.model.Acao</class>
 

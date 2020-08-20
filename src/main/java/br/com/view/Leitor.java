@@ -47,6 +47,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
+import java.awt.Window.Type;
 
 public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
@@ -65,6 +66,7 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 	*/
 	
 	public Leitor(Pessoa pessoa) {
+		setType(Type.POPUP);
 		setResizable(false);
 		initComponents();
 		initWebcam();

@@ -41,6 +41,8 @@ public class Pessoa {
 	private String saida;
 	@OneToOne
 	private Usuario usuario;
+	@OneToOne
+	private Endereco endereco;
 	
 	// METODOS BASICOS
 	public int getId() {

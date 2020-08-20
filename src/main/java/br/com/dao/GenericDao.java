@@ -26,7 +26,7 @@ import br.com.util.HibernateUtil;
 
 public class GenericDao {
 
-	private EntityManager entityManager = HibernateUtil.getEntityManager();
+	protected EntityManager entityManager = HibernateUtil.getEntityManager();
 
 	// METODO DE CADASTRO
 	public void insert(Object entity) {
