@@ -1,3 +1,19 @@
+/*
+ * SENAI
+ * PSIN
+ * MI-66
+ * Objetivo: Criar um arquivo xls e inserir no mesmo
+ * Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+ * Data: 06/08/2020
+ * 
+ * Alterações:
+ * 
+ * Nome: Leonardo Pio
+ * Data: 06/08/2020
+ * Alterou: Documentação de código		
+ * 
+ */
+
 package br.com.util;
 
 import java.io.File;

@@ -1,5 +1,3 @@
-package br.com.controller;
-
 /*
  * SENAI
  * PSIN
@@ -15,6 +13,8 @@ package br.com.controller;
  * Alterou: Documentação de código		
  * 
  */
+
+package br.com.controller;
 
 import java.io.IOException;
 import java.net.URL;

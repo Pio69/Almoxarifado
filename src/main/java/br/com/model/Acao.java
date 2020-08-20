@@ -4,17 +4,16 @@ package br.com.model;
 SENAI
 PSIN
 MI-66
-Objetivo:
-Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Sena
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
 Data: 06/08/2020
 
 Alterações: 
 Nome: Vinícius Sena
 Alterou: Documentou o codigo
 
-Objetivo: Classe responsavel pelo modelo de dados de ações
+Objetivo: Classe responsavel pelo modelo de dados de pessoas
 
-*/ 
+*/
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -5,6 +5,7 @@ package br.com.util;
  * PSIN
  * MI-66
  * Objetivo: Realizar os métodos que serão aplicados para fazer o crud no banco de dados
+ * Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Silva Sena
  * Data: 06/08/2020
  * 
  * Alterações:

@@ -1,5 +1,3 @@
-package br.com.controller;
-
 /*
  * SENAI
  * PSIN
@@ -15,6 +13,7 @@ package br.com.controller;
  * Alterou: Documentação de código		
  * 
  */
+package br.com.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -265,7 +264,8 @@ public class PessoaController {
 
 		switch (genericFrame.getTitle()) {
 		case "Editar":
-			genericDao.update(pessoa.getUsuario());
+			genericDao.insert(pessoa.getUsuario());
+			genericDao.insert(pessoa.getEndereco());
 			genericDao.update(pessoa);
 			return true;
 		case "Cadastrar":

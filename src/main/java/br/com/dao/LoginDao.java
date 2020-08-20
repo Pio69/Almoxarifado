@@ -1,5 +1,20 @@
 package br.com.dao;
 
+/*
+SENAI
+PSIN
+MI-66
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+Data: 06/08/2020
+
+Alterações: 
+Nome: Vinícius Sena
+Alterou: Documentou o codigo
+
+Objetivo: Classe responsavel pela validação do login
+
+*/
+
 import java.util.Arrays;
 import java.util.List;
 

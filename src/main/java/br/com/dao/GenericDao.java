@@ -4,7 +4,7 @@ package br.com.dao;
  * SENAI
  * PSIN
  * MI-66
- * Objetivo: fgdsvfhsgvfs
+ * Objetivo: Classe responsavel por fazer todo o CRUD utilizando o hibernate
  * Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano 
  * Data: 06/08/2020
  * 

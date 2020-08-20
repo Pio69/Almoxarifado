@@ -2,7 +2,7 @@
 *PSIN
 *MI-66
 *Objetivo: Vizualisação dos campos necessarios para o cadastro de Produto
-*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Sena
+*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Silva Sena
 *Data: 06/08/2020
 *
 *Alterações:

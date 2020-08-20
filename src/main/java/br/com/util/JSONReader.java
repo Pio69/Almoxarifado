@@ -1,3 +1,16 @@
+/*SENAI 
+*PSIN
+*MI-66
+*Objetivo: Classe utilizada para ler uma pagina JSON da web e transformar os dados em um objeto
+*Autores: Guilherme Witkosky, Kelvin Schneider, Leonardo Pio, Rafael Adriano e Vinicius Silva Sena
+*Data: 06/08/2020
+*
+*Alterações:
+*Nome: Leonardo Pio
+*Data: 06/08/2020
+*Alterou: Documentação de código
+*/
+
 package br.com.util;
 
 import java.io.InputStreamReader;

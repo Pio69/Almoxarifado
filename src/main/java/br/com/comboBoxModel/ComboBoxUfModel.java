@@ -1,5 +1,21 @@
 package br.com.comboBoxModel;
 
+
+/*
+SENAI
+PSIN
+MI-66
+Autores: Leonardo Pio, Kelvin Schneider, Guilherme Witkosky, Rafael Adriano e Vinicius Silva Sena
+Data: 06/08/2020
+
+Alterações: 
+Nome: Leonardo Pio
+Alteração: Documentação de código
+
+Objetivo: Classe responsavel estrura de um modelo de comboBox
+
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 
