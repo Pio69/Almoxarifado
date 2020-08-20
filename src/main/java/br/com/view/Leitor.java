@@ -48,6 +48,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 import java.awt.Window.Type;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
@@ -66,6 +68,13 @@ public class Leitor extends javax.swing.JFrame implements Runnable, ThreadFactor
 	*/
 	
 	public Leitor(Pessoa pessoa) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				webcam.close();
+				dispose();
+			}
+		});
 		setType(Type.POPUP);
 		setResizable(false);
 		initComponents();

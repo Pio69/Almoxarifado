@@ -130,6 +130,7 @@ public class Cadastrar extends JFrame {
 
 				Pessoa pessoas = new Pessoa();
 				Usuario usuario = new Usuario();
+				Endereco endereco = new Endereco();
 
 				/*
 				 * Inseri os dados coletados na model de usuario
@@ -137,6 +138,13 @@ public class Cadastrar extends JFrame {
 				usuario.setEmail(txtEmail.getText());
 				usuario.setSenha(String.copyValueOf(pswSenha.getPassword()));
 				usuario.setTipo(comboBox.getSelectedItem().toString());
+				
+				endereco.setCep(txtCep.getText());
+				endereco.setBairro(txtBairro.getText());
+				endereco.setComplemento(txtComplemento.getText());
+				endereco.setLocalidade(txtLocalidade.getText());
+				endereco.setLogradouro(txtLogradouro.getText());
+				endereco.setUnidadeFederativa(((UnidadeFederativa) cmbUF.getSelectedItem()));
 
 				pessoas.setId(0);
 				pessoas.setNome(txtNome.getText());
@@ -144,10 +152,11 @@ public class Cadastrar extends JFrame {
 				pessoas.setEntrada(txtEntrada.getText());
 				pessoas.setSaida(txtSaida.getText());
 				pessoas.setUsuario(usuario);
+				pessoas.setEndereco(endereco);
 
 				// VERIFICA SE ACAO FOI REALIZADA PARA APAGAR OS CAMPOS
 				if (PessoaController.genericFunction(pessoas, Cadastrar.this)) {
-					PessoaController.clear(txtNome, txtCpf, txtEmail, pswSenha, txtEntrada, txtSaida);
+					PessoaController.clear(txtNome, txtCpf, txtEmail, pswSenha, txtEntrada, txtSaida, txtCep, txtLogradouro, txtComplemento, txtBairro, txtLocalidade);
 				}
 
 			}
@@ -163,7 +172,7 @@ public class Cadastrar extends JFrame {
 		btnClear.setForeground(Color.WHITE);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PessoaController.clear(txtNome, txtCpf, txtEmail, pswSenha, txtEntrada, txtSaida);
+				PessoaController.clear(txtNome, txtCpf, txtEmail, pswSenha, txtEntrada, txtSaida, txtCep, txtLogradouro, txtComplemento, txtBairro, txtLocalidade);
 			}
 		});
 		btnClear.setBackground(Color.BLACK);

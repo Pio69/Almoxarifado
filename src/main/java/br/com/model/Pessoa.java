@@ -93,6 +93,14 @@ public class Pessoa {
 		this.usuario = usuario;
 	}
 	
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+	
 	/* 
      * Retorno: String
      * Objetivo: Retorna os dados de pessoa formatados

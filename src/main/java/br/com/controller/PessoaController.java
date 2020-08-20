@@ -57,7 +57,7 @@ public class PessoaController {
 	 * 	  Nome, CPF, email, senha, hora entrada, hora saida
 	*/
 	public static void clear(JTextField txtNome, JTextField txtCpf, JTextField txtEmail, JPasswordField pswSenha,
-			JTextField txtEntrada, JTextField txtSaida) {
+			JTextField txtEntrada, JTextField txtSaida, JTextField txtCep,  JTextField txtLogradouro, JTextField txtComplemento, JTextField txtBairro, JTextField txtLocalidade) {
 
 		txtNome.setText(null);
 		txtCpf.setText(null);
@@ -65,6 +65,11 @@ public class PessoaController {
 		txtEntrada.setText(null);
 		txtSaida.setText(null);
 		pswSenha.setText(null);
+		txtCep.setText(null);
+		txtLogradouro.setText(null);
+		txtComplemento.setText(null);
+		txtBairro.setText(null);
+		txtLocalidade.setText(null);
 
 	}
 
@@ -76,7 +81,8 @@ public class PessoaController {
 	 *
 	*/
 	public static void clearUpdate(JTextField txtNome, JTextField txtCpf, JTextField txtEmail, JTextField pswSenha,
-			JTextField txtEntrada, JTextField txtSaida) {
+			JTextField txtEntrada, JTextField txtSaida, JTextField txtCep,  JTextField txtLogradouro, 
+			JTextField txtComplemento, JTextField txtBairro, JTextField txtLocalidade) {
 
 		txtNome.setText(null);
 		txtCpf.setText(null);
@@ -84,6 +90,11 @@ public class PessoaController {
 		txtEntrada.setText(null);
 		txtSaida.setText(null);
 		pswSenha.setText(null);
+		txtCep.setText(null);
+		txtLogradouro.setText(null);
+		txtComplemento.setText(null);
+		txtBairro.setText(null);
+		txtLocalidade.setText(null);
 
 	}
 
@@ -259,6 +270,7 @@ public class PessoaController {
 			return true;
 		case "Cadastrar":
 			genericDao.insert(pessoa.getUsuario());
+			genericDao.insert(pessoa.getEndereco());
 			genericDao.insert(pessoa);
 			return true;
 		}

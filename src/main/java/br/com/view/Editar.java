@@ -197,7 +197,7 @@ public class Editar extends JFrame {
 		btnClear.setForeground(Color.WHITE);
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PessoaController.clearUpdate(txtNome, txtCpf, txtEmail, txtSenha, txtEntrada, txtSaida);
+				PessoaController.clearUpdate(txtNome, txtCpf, txtEmail, txtSenha, txtEntrada, txtSaida, txtCep, txtLogradouro, txtComplemento, txtBairro, txtLocalidade);
 			}
 		});
 		btnClear.setFont(new Font("3ds", Font.BOLD, 14));
