@@ -31,6 +31,7 @@ import javax.swing.border.EmptyBorder;
 
 import br.com.model.Pessoa;
 import br.com.model.table.AcaoTable;
+import br.com.util.XlsInsert;
 
 public class HistoricoEmprestimo extends JFrame {
 	
@@ -85,6 +86,21 @@ public class HistoricoEmprestimo extends JFrame {
 		btnSair.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 		btnSair.setBounds(518, 82, 106, 23);
 		contentPane.add(btnSair);
+		
+		// BOTAO DOWNLOAD
+		JButton btnDownload = new JButton("Download");
+		btnDownload.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				XlsInsert.createTabela();
+				
+			}
+		});
+		btnDownload.setForeground(Color.WHITE);
+		btnDownload.setBackground(Color.BLACK);
+		btnDownload.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
+		btnDownload.setBounds(402, 82, 106, 23);
+		contentPane.add(btnDownload);
 
 	}
 }
