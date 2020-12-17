@@ -1,6 +1,6 @@
 # Almoxarifado
 
-Comandos para executar o projeto
+Comandos importantes para executar o projeto
 
 ```
 
